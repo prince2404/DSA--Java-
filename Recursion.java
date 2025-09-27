@@ -221,6 +221,20 @@ public class Recursion{
 
     }
 
+    public static void twoSum(int nums[], int target){
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        for(int i = 0; i < nums.length; i++){
+            int complement = target - nums[i];
+            if(map.containsKey(complement)){
+                System.out.println(map.get(complement) + "," + i);
+                return;
+            }
+            map.put(nums[i],i);
+        }
+        System.out.println("No such indices");
+    }
+
 
 
     public static void main(String args[]){
@@ -260,19 +274,24 @@ public class Recursion{
 
 
 
-        int arr[] = {3,2,4,5,6,2,7,2,2};
-        int key = 20;
+        // int arr[] = {3,2,4,5,6,2,7,2,2};
+        // int key = 20;
         // printOccurrences(arr,key,0);
 
-        int n = 1947;
+        // int n = 1947;
         // numTOString(n);
 
         // System.out.println(lengthOfString("hello"));
 
-        String str = "abcab";
+        // String str = "abcab";
         // System.out.println(countContiguousSubstring(str));
 
-        towerOfHanoi(3,"src","helper","dest");
+        // towerOfHanoi(3,"src","helper","dest");
+
+        int nums[] = {2,7,11,15};
+        System.out.println(Arrays.toString(nums));
+        // int target = 9;
+        // twoSum(nums,target);
 
 
         
