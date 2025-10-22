@@ -123,6 +123,20 @@ public class LinkedList{
         
     }
 
+    public void reverse(){
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
     public void printll(){
         Node ptr = head;
         while(ptr != null){
@@ -150,7 +164,9 @@ public class LinkedList{
         // System.out.println(ll.size);
 
         // System.out.println(ll.search(10));
-        System.out.println(ll.recuSearch(1));
+        // System.out.println(ll.recuSearch(1));
+        ll.reverse();
+        ll.printll();
 
     }
 }
