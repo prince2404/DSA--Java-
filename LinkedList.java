@@ -137,6 +137,19 @@ public class LinkedList{
         head = prev;
     }
 
+    public void removeNthNodeFromEnd(int n){
+        Node prev = head;
+        Node curr = head.next;
+        int i = 0;
+        while(i != size-n-1){
+            prev = prev.next;
+            curr = curr.next;
+            i++;
+        }
+        prev.next = curr.next;
+        size--;
+    }
+
     public void printll(){
         Node ptr = head;
         while(ptr != null){
@@ -165,7 +178,7 @@ public class LinkedList{
 
         // System.out.println(ll.search(10));
         // System.out.println(ll.recuSearch(1));
-        ll.reverse();
+        ll.removeNthNodeFromEnd(3);
         ll.printll();
 
     }
