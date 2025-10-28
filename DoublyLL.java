@@ -69,6 +69,21 @@ public class DoublyLL{
         }
     }
 
+    public void reverse(){
+        Node prev = null;
+        Node curr = head;
+        Node next;
+
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
 
     //print dll
     public void printDLL(){
@@ -91,11 +106,13 @@ public class DoublyLL{
 
         dll.printDLL();
         System.out.println(dll.size);
-
-        dll.removeFirst();
-        dll.removeLast();
+        dll.reverse();
         dll.printDLL();
-        System.out.println(dll.size);
+
+        // dll.removeFirst();
+        // dll.removeLast();
+        // dll.printDLL();
+        // System.out.println(dll.size);
 
 
     }
