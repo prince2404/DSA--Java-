@@ -41,6 +41,21 @@ public class DoublyLL{
 
     }
 
+    //remove first
+    public void removeFirst(){
+        if(head == null){
+            System.out.println("DLL is empty");
+        }else if(head.next == null){
+            head = tail = null;
+            size = 0;
+        }else{
+            head.next.prev = null;
+            head = head.next;
+            size--;
+        }
+    }
+
+
     //print dll
     public void printDLL(){
         Node ptr = head;
@@ -59,9 +74,15 @@ public class DoublyLL{
 
         dll.addLast(4);
         dll.addLast(5);
-        
+
         dll.printDLL();
         System.out.println(dll.size);
+
+        dll.removeFirst();
+        dll.removeFirst();
+        dll.printDLL();
+        System.out.println(dll.size);
+
 
     }
 }
