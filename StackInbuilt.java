@@ -11,16 +11,34 @@ public class StackInbuilt{
         pushAtBottom(s, data);
         s.push(top);
     }
-    public static void main(String args[]){
-        Stack<Integer> s = new Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
 
-        pushAtBottom(s, 4);
-
-        while(!s.isEmpty()){
-            System.out.println(s.pop());
+    public static String reverseStr(String str){
+        Stack<Character> s = new Stack<>();
+        for(int i = 0; i < str.length(); i++){
+            s.push(str.charAt(i));
         }
+
+        StringBuilder sb = new StringBuilder("");
+        while(!s.isEmpty()){
+            sb.append(s.pop());
+        }
+
+        return sb.toString();
+    }
+
+    public static void main(String args[]){
+        String str = "abc";
+        System.out.println(reverseStr(str));
+        // Stack<Character> s = new Stack<>();
+        // String str = "abc";
+        // for(int i = 0; i < str.length(); i++){
+        //     s.push(str.charAt(i));
+        // }
+
+        // pushAtBottom(s, 4);
+
+        // while(!s.isEmpty()){
+        //     System.out.println(s.pop());
+        // }
     }
 }
