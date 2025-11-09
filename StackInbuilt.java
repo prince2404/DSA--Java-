@@ -41,6 +41,36 @@ public class StackInbuilt{
         return sb.toString();
     }
 
+    public static void stockSpan(int stock[]){
+        int span[] = new int[stock.length];
+        Stack<Integer> s = new Stack<>();
+        
+        span[0] = 1;
+        s.push(0);
+
+        for(int i = 1; i < stock.length; i++){
+            int currPrice = stock[i];
+            while(!s.isEmpty() && currPrice >= stock[s.peek()]){
+                s.pop();
+            }
+
+            if(s.isEmpty()){
+                span[i] = i+1;
+            }else{
+                int prevHigh = s.peek();
+                span[i] = i-prevHigh;
+            }
+
+            s.push(i);
+        }
+
+        for(int i = 0; i < span.length; i++){
+            System.out.print(span[i] + " ");
+        }
+        System.out.println();
+
+    }
+
     public static void main(String args[]){
         // String str = "abc";
         // System.out.println(reverseStr(str));
@@ -56,13 +86,16 @@ public class StackInbuilt{
         //     System.out.println(s.pop());
         // }
 
-        Stack<Integer> s = new Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
+        // Stack<Integer> s = new Stack<>();
+        // s.push(1);
+        // s.push(2);
+        // s.push(3);
 
+        // // printStack(s);
+        // reverseStack(s);
         // printStack(s);
-        reverseStack(s);
-        printStack(s);
+
+        int stock[] = {100, 80, 60, 70, 60, 85, 100};
+        stockSpan(stock);
     }
 }
