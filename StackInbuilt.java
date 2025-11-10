@@ -144,6 +144,52 @@ public class StackInbuilt{
         return false;
     }
 
+    public static void calculateNSL(int arr[], int nsl[]){
+        Stack<Integer> s = new Stack<>();
+        for(int i = 0; i < arr.length; i++){
+            while(!s.isEmpty() && arr[s.peek()] >= arr[i]){
+                s.pop();
+            }
+            if(s.isEmpty()){
+                nsl[i] = -1;
+            }else{
+                nsl[i] = s.peek();
+            }
+            s.push(i);
+
+        }
+    }
+
+    public static void calculateNSR(int arr[], int nsr[]){
+        Stack<Integer> s = new Stack<>();
+        for(int i = arr.length-1; i >= 0; i--){
+            while(!s.isEmpty() && arr[s.peek()] >= arr[i]){
+                s.pop();
+            }
+            if(s.isEmpty()){
+                nsr[i] = arr.length;
+            }else{
+                nsr[i] = s.peek();
+            }
+            s.push(i);
+        }
+    }
+
+    public static int maxRectArea(int arr[]){
+        int n = arr.length;
+        int nsl[] = new int[n];
+        calculateNSL(arr, nsl);
+
+        int nsr[] = new int[n];
+        calculateNSR(arr, nsr);
+
+        int maximum = 0;
+        for(int i = 0; i < n; i++){
+            maximum = Math.max(maximum, arr[i] * (nsr[i] - nsl[i] - 1));
+        }
+        return maximum;
+    }
+
     public static void main(String args[]){
         // String str = "abc";
         // System.out.println(reverseStr(str));
@@ -177,7 +223,10 @@ public class StackInbuilt{
         // String str = "({})[]";
         // System.out.println(checkValidParenthesis(str));
 
-        String str = "((a+b))";
-        System.out.println(isDuplicate(str));
+        // String str = "((a+b))";
+        // System.out.println(isDuplicate(str));
+
+        int arr[] = {2,1,5,6,2,3};
+        System.out.println(maxRectArea(arr));
     }
 }
