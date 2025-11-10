@@ -122,6 +122,28 @@ public class StackInbuilt{
         }
     }
 
+    public static boolean isDuplicate(String str){
+        Stack<Character> s = new Stack<>();
+
+        for(int i = 0; i < str.length(); i++){
+            char ch = str.charAt(i);
+            if(ch == ')'){
+                int count = 0;
+                while(s.pop() != '('){
+                    count++;
+                }
+                if(count < 1){
+                    return true;
+                }
+            }else{
+                s.push(ch);
+            }
+            
+        }
+
+        return false;
+    }
+
     public static void main(String args[]){
         // String str = "abc";
         // System.out.println(reverseStr(str));
@@ -152,7 +174,10 @@ public class StackInbuilt{
         // int arr[] = {6,8,0,1,3};
         // nextGreaterElement(arr);
 
-        String str = "({})[]";
-        System.out.println(checkValidParenthesis(str));
+        // String str = "({})[]";
+        // System.out.println(checkValidParenthesis(str));
+
+        String str = "((a+b))";
+        System.out.println(isDuplicate(str));
     }
 }
