@@ -71,6 +71,30 @@ public class StackInbuilt{
 
     }
 
+    public static void nextGreaterElement(int arr[]){
+        int nxtGreater[] = new int[arr.length];
+        Stack<Integer> s = new Stack<>();
+
+        for(int i = arr.length-1; i >= 0; i--){
+            while(!s.isEmpty() && arr[s.peek()] <= arr[i]){
+                s.pop();
+            }
+
+            if(s.isEmpty()){
+                nxtGreater[i] = -1;
+            }else{
+                nxtGreater[i] = arr[s.peek()];
+            }
+
+            s.push(i);
+        }
+
+        for(int i = 0; i < nxtGreater.length; i++){
+            System.out.print(nxtGreater[i] + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String args[]){
         // String str = "abc";
         // System.out.println(reverseStr(str));
@@ -95,7 +119,10 @@ public class StackInbuilt{
         // reverseStack(s);
         // printStack(s);
 
-        int stock[] = {100, 80, 60, 70, 60, 85, 100};
-        stockSpan(stock);
+        // int stock[] = {100, 80, 60, 70, 60, 85, 100};
+        // stockSpan(stock);
+
+        int arr[] = {6,8,0,1,3};
+        nextGreaterElement(arr);
     }
 }
