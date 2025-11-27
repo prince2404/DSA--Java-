@@ -1,35 +1,30 @@
 public class QueueDS{
-    public static class Queue{
-        static int arr[];
-        static int size;
-        static int rear;
-        static int front;
+    public static class Node{
+        int data;
+        Node next;
 
-        public Queue(int n){
-            arr = new int[n];
-            size = n;
-            rear = -1;
-            front = -1;
+        public Node(int data){
+            this.data = data;
+            this.next = null;
         }
+    }
+    public static class Queue{
+        public static Node head;
+        public static Node tail;
+        
 
         public boolean isEmpty(){
-            return front == -1 && rear == -1;
-        }
-        public boolean isFull(){
-            return (rear+1)%size == front;
+            return head == null;
         }
 
         public void add(int data){
-            if(isFull()){
-                System.out.println("queue is full");
+            Node newNode = new Node(data);
+            if(head == null){
+                head = tail = newNode;
                 return;
             }
-            //add 1st element
-            if(front == -1){
-                front = 0;
-            }
-            rear = (rear+1)%size;
-            arr[rear] = data;
+            tail.next = newNode;
+            tail = newNode;
         }
 
         public int remove(){
@@ -37,13 +32,8 @@ public class QueueDS{
                 System.out.println("queue is empty");
                 return -1;
             }
-            int val = arr[front];
-            //remove last element
-            if(front == rear){
-                front = rear = -1;
-            }else{
-                front = (front + 1) % size;
-            }
+            int val = head.data;
+            head = head.next;
             return val;
         }
 
@@ -52,18 +42,14 @@ public class QueueDS{
                 System.out.println("queue is empty");
                 return -1;
             }
-            return arr[front];
+            return head.data;
         }
     }
     public static void main(String args[]){
-        Queue q = new Queue(3);
+        Queue q = new Queue();
         q.add(1);
         q.add(2);
         q.add(3);
-        System.out.println(q.remove());
-        q.add(4);
-        System.out.println(q.remove());
-        q.add(5);
 
         while(!q.isEmpty()){
             System.out.println(q.remove());
