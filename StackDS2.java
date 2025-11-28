@@ -10,43 +10,21 @@ public class StackDS2 {
         }
 
         public void push(int data){
-            q1.add(data);
+            q2.add(data);
+            while(!q1.isEmpty()){
+                q2.add(q1.remove());
+            }
+            Queue<Integer> temp = q1;
+            q1 = q2;
+            q2 = temp;
         }
 
         public int pop(){
-            if(isEmpty()){
-                System.out.println("stack is empty");
-                return -1;
-            }
-            while(q1.size() > 1){
-                q2.add(q1.remove());
-            }
-            int val = q1.remove();
-
-            Queue<Integer> temp = q1;
-            q1 = q2;
-            q2 = temp;
-
-            return val;
+            return q1.remove();
         }
 
         public int peek(){
-            if(isEmpty()){
-                System.out.println("stack is empty");
-                return -1;
-            }
-            while(q1.size() > 1){
-                q2.add(q1.remove());
-            }
-            int val = q1.remove();
-            q2.add(val);
-
-
-            Queue<Integer> temp = q1;
-            q1 = q2;
-            q2 = temp;
-
-            return val;
+            return q1.peek();
         }
     }
     public static void main(String args[]){
