@@ -52,21 +52,29 @@ public class QueueProblems {
         // String str = "aabccxb";
         // firstNonRepeating(str);
 
-        Queue<Integer> q = new ArrayDeque<>();
-        q.add(1);
-        q.add(2);
-        q.add(3);
-        q.add(4);
-        q.add(5);
+        // Queue<Integer> q = new ArrayDeque<>();
+        // q.add(1);
+        // q.add(2);
+        // q.add(3);
+        // q.add(4);
+        // q.add(5);
         
 
         // interLeave(q);
-        reverse(q);
+        // reverse(q);
 
-        while(!q.isEmpty()){
-            System.out.print(q.remove() + " ");
-        }
-        System.out.println();
+        // while(!q.isEmpty()){
+        //     System.out.print(q.remove() + " ");
+        // }
+        // System.out.println();
+
+        Deque<Integer> dq = new ArrayDeque<>();
+        dq.addFirst(1);
+        dq.addLast(2);
+        dq.addFirst(3);
+        dq.removeLast();
+
+        System.out.println(dq);
     }
     
 }
