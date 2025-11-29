@@ -1,49 +1,78 @@
 import java.util.*;
 
 public class QueueProblems {
-    public static void firstNonRepeating(String str){
-        int freq[] = new int[26];
-        Queue<Character> q = new ArrayDeque<>();
+    // public static void firstNonRepeating(String str){
+    //     int freq[] = new int[26];
+    //     Queue<Character> q = new ArrayDeque<>();
 
-        for(char ch : str.toCharArray()){
-            q.add(ch);
-            freq[ch-'a']++;
+    //     for(char ch : str.toCharArray()){
+    //         q.add(ch);
+    //         freq[ch-'a']++;
 
-            while(!q.isEmpty() && freq[q.peek()-'a'] > 1){
-                q.remove();
+    //         while(!q.isEmpty() && freq[q.peek()-'a'] > 1){
+    //             q.remove();
+    //         }
+    //         if(q.isEmpty()){
+    //             System.out.print(-1 + " ");
+    //         }else{
+    //             System.out.print(q.peek() + " ");
+    //         }
+    //     }
+    //     System.out.println();
+
+    // }
+
+    // public static void interLeave(Queue<Integer> q){
+    //     Queue<Integer> first = new ArrayDeque<>();
+    //     int size = q.size();
+    //     for(int i = 1; i <= size/2; i++){
+    //         first.add(q.remove());
+    //     }
+
+    //     while(!first.isEmpty()){
+    //         q.add(first.remove());
+    //         q.add(q.remove());
+    //     }
+    // }
+
+    // public static void reverse(Queue<Integer> q){
+    //     Stack<Integer> s = new Stack<>();
+    //     while(!q.isEmpty()){
+    //         s.push(q.remove());
+    //     }
+
+    //     while(!s.isEmpty()){
+    //         q.add(s.pop());
+    //     }
+    // }
+
+    public static class Stack{
+        Deque<Integer> dq = new ArrayDeque<>();
+
+        public boolean isEmpty(){
+            return dq.isEmpty();
+        }
+
+        public void push(int data){
+            dq.addLast(data);
+        }
+
+        public int pop(){
+            if(isEmpty()){
+                System.out.println("Stack is empty");
+                return -1;
             }
-            if(q.isEmpty()){
-                System.out.print(-1 + " ");
-            }else{
-                System.out.print(q.peek() + " ");
+            return dq.removeLast();
+        }
+
+        public int peek(){
+            if(isEmpty()){
+                System.out.println("Stack is empty");
+                return -1;
             }
-        }
-        System.out.println();
-
-    }
-
-    public static void interLeave(Queue<Integer> q){
-        Queue<Integer> first = new ArrayDeque<>();
-        int size = q.size();
-        for(int i = 1; i <= size/2; i++){
-            first.add(q.remove());
+            return dq.getLast();
         }
 
-        while(!first.isEmpty()){
-            q.add(first.remove());
-            q.add(q.remove());
-        }
-    }
-
-    public static void reverse(Queue<Integer> q){
-        Stack<Integer> s = new Stack<>();
-        while(!q.isEmpty()){
-            s.push(q.remove());
-        }
-
-        while(!s.isEmpty()){
-            q.add(s.pop());
-        }
     }
 
 
@@ -68,13 +97,21 @@ public class QueueProblems {
         // }
         // System.out.println();
 
-        Deque<Integer> dq = new ArrayDeque<>();
-        dq.addFirst(1);
-        dq.addLast(2);
-        dq.addFirst(3);
-        dq.removeLast();
+        // Deque<Integer> dq = new ArrayDeque<>();
+        // dq.addFirst(1);
+        // dq.addLast(2);
+        // dq.addFirst(3);
+        // dq.removeLast();
 
-        System.out.println(dq);
+        // System.out.println(dq);
+
+        Stack s = new Stack();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        while(!s.isEmpty()){
+            System.out.println(s.pop());
+        }
     }
     
 }
