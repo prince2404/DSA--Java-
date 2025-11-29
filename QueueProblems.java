@@ -46,31 +46,31 @@ public class QueueProblems {
     //     }
     // }
 
-    public static class Stack{
+    public static class Queue{
         Deque<Integer> dq = new ArrayDeque<>();
 
         public boolean isEmpty(){
             return dq.isEmpty();
         }
 
-        public void push(int data){
+        public void add(int data){
             dq.addLast(data);
         }
 
-        public int pop(){
+        public int remove(){
             if(isEmpty()){
-                System.out.println("Stack is empty");
+                System.out.println("Queue is empty");
                 return -1;
             }
-            return dq.removeLast();
+            return dq.removeFirst();
         }
 
         public int peek(){
             if(isEmpty()){
-                System.out.println("Stack is empty");
+                System.out.println("Queue is empty");
                 return -1;
             }
-            return dq.getLast();
+            return dq.getFirst();
         }
 
     }
@@ -105,12 +105,12 @@ public class QueueProblems {
 
         // System.out.println(dq);
 
-        Stack s = new Stack();
-        s.push(1);
-        s.push(2);
-        s.push(3);
-        while(!s.isEmpty()){
-            System.out.println(s.pop());
+        Queue q = new Queue();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        while(!q.isEmpty()){
+            System.out.println(q.remove());
         }
     }
     
