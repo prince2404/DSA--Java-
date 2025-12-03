@@ -2,33 +2,45 @@ import java.util.*;
 
 public class FractionalKnapsack {
     public static void main(String args[]){
-        int value[] = {60,100,120};
-        int weight[] = {10,20,30};
-        int capacity = 50;
+        // int value[] = {60,100,120};
+        // int weight[] = {10,20,30};
+        // int capacity = 50;
 
-        int n = value.length;
-        double ratio[][] = new double[n][2];
-        for(int i = 0; i < n; i++){
-            ratio[i][0] = i;
-            ratio[i][1] = value[i]/(double)weight[i];
+        // int n = value.length;
+        // double ratio[][] = new double[n][2];
+        // for(int i = 0; i < n; i++){
+        //     ratio[i][0] = i;
+        //     ratio[i][1] = value[i]/(double)weight[i];
+        // }
+
+        // Arrays.sort(ratio, Comparator.comparingDouble(o -> o[1]));
+
+        // double total = 0;
+        // for(int i = n-1; i >= 0; i--){
+        //     int idx = (int)ratio[i][0];
+        //     if(capacity >= weight[idx]){
+        //         capacity -= weight[idx];
+        //         total += value[idx];
+        //     }else{
+        //         total += ratio[i][1] * capacity;
+        //         capacity = 0;
+        //         break;
+        //     }
+        // }
+
+        // System.out.println("maximum value = " + total);
+
+        int A[] = {4,1,8,7};
+        int B[] = {2,3,6,5};
+        Arrays.sort(A);
+        Arrays.sort(B);
+
+        int sum = 0;
+
+        for(int i = 0; i < A.length; i++){
+            sum += Math.abs(A[i]-B[i]);
         }
-
-        Arrays.sort(ratio, Comparator.comparingDouble(o -> o[1]));
-
-        double total = 0;
-        for(int i = n-1; i >= 0; i--){
-            int idx = (int)ratio[i][0];
-            if(capacity >= weight[idx]){
-                capacity -= weight[idx];
-                total += value[idx];
-            }else{
-                total += ratio[i][1] * capacity;
-                capacity = 0;
-                break;
-            }
-        }
-
-        System.out.println("maximum value = " + total);
+        System.out.println("Min absolute diff = " + sum);
     }
     
 }
