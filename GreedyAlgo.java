@@ -1,43 +1,44 @@
 import java.util.*;
 
 public class GreedyAlgo {
-    static class Job{
-        int id;
-        int deadline;
-        int profit;
-
-        public Job(int id, int deadline, int profit){
-            this.id = id;
-            this.deadline = deadline;
-            this.profit = profit;
-        }
-    }
+    
     public static void main(String args[]){
-        int jobsInfo[][] = {{4,20}, {1,10}, {1,40}, {1,30}};
+        int n = 4, m = 6;
+        Integer verCost[] = {2,1,3,1,4};
+        Integer horCost[] = {4,1,2};
 
-        ArrayList<Job> jobs = new ArrayList<>();
-        for(int i = 0; i < jobsInfo.length; i++){
-            jobs.add(new Job(i, jobsInfo[i][0], jobsInfo[i][1]));
-        }
+        Arrays.sort(verCost, Collections.reverseOrder());
+        Arrays.sort(horCost, Collections.reverseOrder());
 
-        Collections.sort(jobs, (a,b) -> b.profit-a.profit); //descending
+        int v = 0, h = 0;
+        int vp = 1, hp = 1;
+        int cost = 0;
 
-        int time = 0;
-        ArrayList<Integer> ans = new ArrayList<>();
-
-        for(int i = 0; i < jobs.size(); i++){
-            Job curr = jobs.get(i);
-            if(curr.deadline > time){
-                ans.add(curr.id);
-                time++;
+        while(v < verCost.length && h < horCost.length){
+            if(verCost[v] >= horCost[h]){
+                cost += verCost[v] * hp;
+                vp++;
+                v++;
+            }else{
+                cost += horCost[h] * vp;
+                hp++;
+                h++;
             }
+
         }
 
-        System.out.println("Total jobs = " + ans.size());
-        for(int i = 0; i < ans.size(); i++){
-            System.out.print(ans.get(i) + " ");
+        while(v < verCost.length){
+            cost += verCost[v] * hp;
+            vp++;
+            v++;
         }
-        System.out.println();
+        while(h < horCost.length){
+            cost += horCost[h] * vp;
+            hp++;
+            h++;
+        }
+
+        System.out.println("Min cost = " + cost);
 
     }
     
