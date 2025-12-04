@@ -2,27 +2,26 @@ import java.util.*;
 
 public class GreedyAlgo {
     public static void main(String args[]){
-        int pairs[][] = {
-            {5,24},
-            {39,60},
-            {5,28},
-            {27,40},
-            {50,90}
-        };
+        Integer coins[] = {1,2,5,10,20,50,100,500,2000};
+        int amount = 590;
+        Arrays.sort(coins, Comparator.reverseOrder());
 
-        Arrays.sort(pairs, Comparator.comparingInt(o -> o[1]));
+        int count = 0;
+        ArrayList<Integer> ans = new ArrayList<>();
 
-        int count = 1;
-        int lastEnd = pairs[0][1];
-
-        for(int i = 1; i < pairs.length; i++){
-            if(pairs[i][0] > lastEnd){
+        for(int i = 0; i < coins.length; i++){
+            while(coins[i] <= amount){
                 count++;
-                lastEnd = pairs[i][1];
+                ans.add(coins[i]);
+                amount -= coins[i];
             }
         }
 
-        System.out.println("Max chain length = " + count);
+        System.out.println("Total coins/notes = " + count);
+        for(int i = 0; i < ans.size(); i++){
+            System.out.print(ans.get(i) + " ");
+        }
+        System.out.println();
 
 
 
