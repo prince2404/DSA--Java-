@@ -14,7 +14,7 @@ public class BookAllocation {
         int high = sum;
 
         while(low <= high){
-            int mid = (low + high)/2;
+            int mid = low + (high-low)/2;
             int students = countStudents(arr, mid);
             if(students > m){
                 low = mid + 1;
