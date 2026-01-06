@@ -89,6 +89,16 @@ public class TreesDS {
             }
         
         }
+
+        public static int height(Node root){
+            if(root == null){
+                return 0;
+            }
+            int lh = height(root.left);
+            int rh = height(root.right);
+            int h = Math.max(lh,rh) + 1;
+            return h;
+        }
     }
     public static void main(String args[]){
         int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
@@ -97,7 +107,8 @@ public class TreesDS {
         // tree.preorder(root);
         // tree.inorder(root);
         // tree.postorder(root);
-        tree.levelorder(root);
+        // tree.levelorder(root);
+        System.out.println(tree.height(root));
 
     }
     
