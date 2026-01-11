@@ -23,6 +23,18 @@ public class HeightOfTree {
             return h;
     }
 
+    public static int diameter(Node root){
+        if(root == null){
+            return 0;
+        }
+        int ldiam = diameter(root.left);
+        int lh = height(root.left);
+        int rdiam = diameter(root.right);
+        int rh = height(root.right);
+        int selfdiam = lh + rh + 1;
+        return Math.max(Math.max(ldiam, rdiam), selfdiam);
+    }
+
     public static int count(Node root){
         if(root == null){
             return 0;
@@ -53,7 +65,8 @@ public class HeightOfTree {
 
         // System.out.println(height(root));
         // System.out.println(count(root));
-        System.out.println(sum(root));
+        // System.out.println(sum(root));
+        System.out.println(diameter(root));
 
 
     }
