@@ -205,6 +205,29 @@ public class HeightOfTree {
             return leftlcaDist + 1;
         }
     }
+
+    public static int kthAncestor(Node root, int n, int k){
+        if(root == null){
+            return -1;
+        }
+        if(root.data == n){
+            return 0;
+        }
+        int leftDist = kthAncestor(root.left, n, k);
+        int rightDist = kthAncestor(root.right, n, k);
+
+        if(leftDist == -1 && rightDist == -1){
+            return -1;
+        }
+
+        int max = Math.max(leftDist, rightDist);
+        if(max + 1 == k){
+            System.out.println(root.data);
+        
+        }
+        return max + 1;
+        
+    }
    
     public static void main(String args[]){
         Node root = new Node(1);
@@ -215,10 +238,15 @@ public class HeightOfTree {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        int n1 = 4;
-        int n2 = 6;
+        int n = 4;
+        int k = 1;
 
-        System.out.println(minDist(root, n1, n2));
+        kthAncestor(root, n, k);
+
+        // int n1 = 4;
+        // int n2 = 6;
+
+        // System.out.println(minDist(root, n1, n2));
 
         // Node lca = lowestCommonAncestor(root, n1, n2);
         // System.out.println(lca.data);
