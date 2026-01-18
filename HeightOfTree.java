@@ -175,14 +175,16 @@ public class HeightOfTree {
         Node leftLCA = lowestCommonAncestor(root.left, n1, n2);
         Node rightLCA = lowestCommonAncestor(root.right, n1, n2);
 
-        if(rightLCA == null){
-            return leftLCA;
+        if(leftLCA == null && rightLCA == null){
+            return null;
         }
-        if(leftLCA == null){
+        else if(leftLCA == null){
             return rightLCA;
-        }
-
-        return root;
+        }else if(rightLCA == null){
+            return leftLCA;
+        }else{
+            return root;
+        }  
     }
 
     public static int lcaDist(Node root, int n){
