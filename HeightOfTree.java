@@ -228,6 +228,20 @@ public class HeightOfTree {
         return max + 1;
         
     }
+
+    public static int transformToSumTree(Node root){
+        if(root == null){
+            return 0;
+        }
+        int leftSum = transformToSumTree(root.left);
+        int rightSum = transformToSumTree(root.right);
+
+        int val = leftSum + rightSum + root.data;
+
+        root.data = leftSum + rightSum;
+        return val;
+        
+    }
    
     public static void main(String args[]){
         Node root = new Node(1);
@@ -238,10 +252,20 @@ public class HeightOfTree {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        int n = 4;
-        int k = 1;
+        transformToSumTree(root);
+        System.out.println(root.data);
+        System.out.println(root.left.data);
+        System.out.println(root.right.data);
+        System.out.println(root.left.left.data);
+        System.out.println(root.left.right.data);
+        System.out.println(root.right.left.data);
+        System.out.println(root.right.right.data);
 
-        kthAncestor(root, n, k);
+
+        // int n = 4;
+        // int k = 1;
+
+        // kthAncestor(root, n, k);
 
         // int n1 = 4;
         // int n2 = 6;
