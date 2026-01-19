@@ -254,35 +254,48 @@ public class HeightOfTree {
         }
         return checkUnivalued(root.left, val) && checkUnivalued(root.right, val);
     }
+
+    public static void mirrorTree(Node root){
+        if(root == null){
+            return;
+        }
+        Node temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        
+        mirrorTree(root.left);
+        mirrorTree(root.right);
+    }
    
     public static void main(String args[]){
 
-        Node root = new Node(2);
-        root.left = new Node(2);
-        root.right = new Node(2);
-        root.left.left = new Node(5);
-        root.left.right = new Node(2);
+        // Node root = new Node(2);
+        // root.left = new Node(2);
+        // root.right = new Node(2);
+        // root.left.left = new Node(5);
+        // root.left.right = new Node(2);
 
-        int val = root.data;
-        System.out.println(checkUnivalued(root, val));
+        // int val = root.data;
+        // System.out.println(checkUnivalued(root, val));
         
 
-        // Node root = new Node(1);
-        // root.left = new Node(2);
-        // root.right = new Node(3);
-        // root.left.left = new Node(4);
-        // root.left.right = new Node(5);
-        // root.right.left = new Node(6);
-        // root.right.right = new Node(7);
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
 
         // transformToSumTree(root);
-        // System.out.println(root.data);
-        // System.out.println(root.left.data);
-        // System.out.println(root.right.data);
-        // System.out.println(root.left.left.data);
-        // System.out.println(root.left.right.data);
-        // System.out.println(root.right.left.data);
-        // System.out.println(root.right.right.data);
+        mirrorTree(root);
+        System.out.println(root.data);
+        System.out.println(root.left.data);
+        System.out.println(root.right.data);
+        System.out.println(root.left.left.data);
+        System.out.println(root.left.right.data);
+        System.out.println(root.right.left.data);
+        System.out.println(root.right.right.data);
 
 
         // int n = 4;
