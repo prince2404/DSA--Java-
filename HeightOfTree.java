@@ -266,8 +266,36 @@ public class HeightOfTree {
         mirrorTree(root.left);
         mirrorTree(root.right);
     }
+
+    public static Node deleteLeafNodes(Node root, int val){
+        if(root == null){
+            return null;
+        }
+        root.left = deleteLeafNodes(root.left, val);
+        root.right = deleteLeafNodes(root.right, val);
+
+        if(root.left == null && root.right == null && root.data == val){
+            return null;
+        }
+        return root;
+    }
    
     public static void main(String args[]){
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(2);
+        root.right.left = new Node(2);
+        root.right.right = new Node(4);
+        int val = 2;
+
+        deleteLeafNodes(root, val);
+        System.out.println(root.data);
+    
+        System.out.println(root.right.data);
+        
+        
+        System.out.println(root.right.right.data);
 
         // Node root = new Node(2);
         // root.left = new Node(2);
@@ -279,23 +307,23 @@ public class HeightOfTree {
         // System.out.println(checkUnivalued(root, val));
         
 
-        Node root = new Node(1);
-        root.left = new Node(2);
-        root.right = new Node(3);
-        root.left.left = new Node(4);
-        root.left.right = new Node(5);
-        root.right.left = new Node(6);
-        root.right.right = new Node(7);
+        // Node root = new Node(1);
+        // root.left = new Node(2);
+        // root.right = new Node(3);
+        // root.left.left = new Node(4);
+        // root.left.right = new Node(5);
+        // root.right.left = new Node(6);
+        // root.right.right = new Node(7);
 
         // transformToSumTree(root);
-        mirrorTree(root);
-        System.out.println(root.data);
-        System.out.println(root.left.data);
-        System.out.println(root.right.data);
-        System.out.println(root.left.left.data);
-        System.out.println(root.left.right.data);
-        System.out.println(root.right.left.data);
-        System.out.println(root.right.right.data);
+        // mirrorTree(root);
+        // System.out.println(root.data);
+        // System.out.println(root.left.data);
+        // System.out.println(root.right.data);
+        // System.out.println(root.left.left.data);
+        // System.out.println(root.left.right.data);
+        // System.out.println(root.right.left.data);
+        // System.out.println(root.right.right.data);
 
 
         // int n = 4;
