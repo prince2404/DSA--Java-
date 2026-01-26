@@ -1,5 +1,7 @@
 import java.util.*;
 
+import org.w3c.dom.Node;
+
 public class BST {
     static class Node{
         int data;
@@ -35,16 +37,40 @@ public class BST {
         System.out.print(root.data + " ");
         inorder(root.right);
     }
-    public static void main(String args[]){
-        int values[] = {5,1,3,4,2,7};
-        Node root = null;
 
-        for(int val : values){
-            root = build(root, val);
+    public static boolean search(Node root, int key){
+        if(root == null){
+            return false;
         }
+
+        if(root.data == key){
+            return true;
+        }
+        else if(root.data > key){
+            return search(root.left, key);
+        }else{
+            return search(root.right, key);
+        }
+    
+    }
+    public static void main(String args[]){
+        Node root = new Node(-10);
+        root.left = new Node(9);
+        root.right = new Node(20);
+        root.right.left = new Node(15);
+        root.right.right = new Node(7);
+
+        int key = -10;
+        System.out.println(search(root, key));
+        // int values[] = {5,1,3,4,2,7};
+        // Node root = null;
+
+        // for(int val : values){
+        //     root = build(root, val);
+        // }
         
 
-        inorder(root);
+        // inorder(root);
 
     }
     
