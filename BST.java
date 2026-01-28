@@ -84,6 +84,21 @@ public class BST {
         }
         return root;
     }
+
+    public static void printInRange(Node root, int low, int high){
+        if(root == null){
+            return;
+        }
+        if(root.data > low){
+            printInRange(root.left, low, high);
+        }
+        if(root.data >= low && root.data <= high){
+            System.out.print(root.data + " ");
+        }
+        if(root.data < high){
+            printInRange(root.right, low, high);
+        }
+    }
     public static void main(String args[]){
         Node root = new Node(8);
         root.left = new Node(5);
@@ -94,9 +109,13 @@ public class BST {
         root.left.left.right = new Node(4);
         root.right.right = new Node(11);
         root.right.right.right = new Node(14);
-        int key = 8;
-        delete(root,key);
-        inorder(root);
+
+        int low = 5;
+        int high = 12;
+        printInRange(root, low, high);
+        // int key = 8;
+        // delete(root,key);
+        // inorder(root);
 
 
         // int key = -10;
