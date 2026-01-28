@@ -53,15 +53,54 @@ public class BST {
         }
     
     }
-    public static void main(String args[]){
-        Node root = new Node(-10);
-        root.left = new Node(9);
-        root.right = new Node(20);
-        root.right.left = new Node(15);
-        root.right.right = new Node(7);
 
-        int key = -10;
-        System.out.println(search(root, key));
+    public static Node delete(Node root, int key){
+        if(root == null){
+            return null;
+        }
+        if(root.data > key){
+            root.left = delete(root.left, key);
+        }
+        else if(root.data < key){
+            root.right = delete(root.right, key);
+        }else{
+            if(root.left == null){
+                return root.right;
+            }
+            else if(root.right == null){
+                return root.left;
+            }
+
+            Node successor = findMin(root.right);
+            root.data = successor.data;
+            root.right = delete(root.right, successor.data);
+        }
+        return root;
+    }
+
+    public static Node findMin(Node root){
+        while(root.left != null){
+            root = root.left;
+        }
+        return root;
+    }
+    public static void main(String args[]){
+        Node root = new Node(8);
+        root.left = new Node(5);
+        root.right = new Node(10);
+        root.left.left = new Node(3);
+        root.left.right = new Node(6);
+        root.left.left.left = new Node(1);
+        root.left.left.right = new Node(4);
+        root.right.right = new Node(11);
+        root.right.right.right = new Node(14);
+        int key = 8;
+        delete(root,key);
+        inorder(root);
+
+
+        // int key = -10;
+        // System.out.println(search(root, key));
         // int values[] = {5,1,3,4,2,7};
         // Node root = null;
 
