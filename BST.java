@@ -99,6 +99,23 @@ public class BST {
             printInRange(root.right, low, high);
         }
     }
+
+    public static void rootToLeafPaths(Node root, ArrayList<Integer> path){
+        if(root == null){
+            return;
+        }
+
+        path.add(root.data);
+
+        if(root.left == null && root.right == null){
+            System.out.println(path);
+        }else{
+            rootToLeafPaths(root.left, path);
+            rootToLeafPaths(root.right, path);
+        }
+
+        path.remove(path.size()-1);
+    }
     public static void main(String args[]){
         Node root = new Node(8);
         root.left = new Node(5);
@@ -110,9 +127,13 @@ public class BST {
         root.right.right = new Node(11);
         root.right.right.right = new Node(14);
 
-        int low = 5;
-        int high = 12;
-        printInRange(root, low, high);
+        ArrayList<Integer> path = new ArrayList<>();
+        rootToLeafPaths(root,path);
+
+
+        // int low = 5;
+        // int high = 12;
+        // printInRange(root, low, high);
         // int key = 8;
         // delete(root,key);
         // inorder(root);
