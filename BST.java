@@ -15,19 +15,19 @@ public class BST {
         }
     }
 
-    public static Node build(Node root, int val){
-        if(root == null){
-            root = new Node(val);
-            return root;
-        }
+    // public static Node build(Node root, int val){
+    //     if(root == null){
+    //         root = new Node(val);
+    //         return root;
+    //     }
 
-        if(root.data > val){
-            root.left = build(root.left, val);
-        }else{
-            root.right = build(root.right, val);
-        }
-        return root;
-    }
+    //     if(root.data > val){
+    //         root.left = build(root.left, val);
+    //     }else{
+    //         root.right = build(root.right, val);
+    //     }
+    //     return root;
+    // }
 
     public static void inorder(Node root){
         if(root == null){
@@ -133,18 +133,39 @@ public class BST {
         return validate(root.left, min, root.data) && validate(root.right, root.data, max);
     }
 
-    public static void main(String args[]){
-        Node root = new Node(8);
-        root.left = new Node(5);
-        root.right = new Node(10);
-        root.left.left = new Node(3);
-        root.left.right = new Node(6);
-        root.left.left.left = new Node(1);
-        root.left.left.right = new Node(4);
-        root.right.right = new Node(11);
-        root.right.right.right = new Node(14);
+    public static Node sortedArrayToBST(int arr[]){
+        return build(arr, 0, arr.length-1);
+    }
 
-        System.out.println(isValidBST(root));
+    public static Node build(int arr[], int start, int end){
+        if(start > end){
+            return null;
+        }
+
+        int mid = start + (end - start)/2;
+        Node root = new Node(arr[mid]);
+
+        root.left = build(arr, start, mid-1);
+        root.right = build(arr, mid+1, end);
+
+        return root;
+    }
+
+    public static void main(String args[]){
+        // Node root = new Node(8);
+        // root.left = new Node(5);
+        // root.right = new Node(10);
+        // root.left.left = new Node(3);
+        // root.left.right = new Node(6);
+        // root.left.left.left = new Node(1);
+        // root.left.left.right = new Node(4);
+        // root.right.right = new Node(11);
+        // root.right.right.right = new Node(14);
+
+        // System.out.println(isValidBST(root));
+
+        int arr[] = {3,5,6,8,10,11,12};
+        System.out.println(sortedArrayToBST(arr).data);
 
         // ArrayList<Integer> path = new ArrayList<>();
         // rootToLeafPaths(root,path);
