@@ -57,20 +57,56 @@ public class BST2 {
         return new Info(false, Math.max(left.size, right.size), Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
+    static int sum = 0;
+
+    public static int sumInRange(Node root, int low, int high){
+        helper(root, low, high);
+        return sum;
+    }
+
+    public static void helper(Node root, int low, int high){
+        if(root == null){
+            return;
+        }
+        if(root.data > low){
+            helper(root.left, low, high);
+        }
+        if(root.data >= low && root.data <= high){
+            sum += root.data;
+        }
+        if(root.data < high){
+            helper(root.right, low, high);
+        }
+    }
+
     
 
     public static void main(String args[]){
-        Node root = new Node(50);
-        root.left = new Node(30);
-        root.right = new Node(60);
-        root.left.left = new Node(5);
-        root.left.right = new Node(20);
-        root.right.left = new Node(45);
-        root.right.right = new Node(70);
-        root.right.right.left = new Node(65);
-        root.right.right.right = new Node(80);
+        // Node root = new Node(50);
+        // root.left = new Node(30);
+        // root.right = new Node(60);
+        // root.left.left = new Node(5);
+        // root.left.right = new Node(20);
+        // root.right.left = new Node(45);
+        // root.right.right = new Node(70);
+        // root.right.right.left = new Node(65);
+        // root.right.right.right = new Node(80);
 
-        System.out.println(sizeOfLargestBST(root));
+        Node root = new Node(8);
+        root.left = new Node(5);
+        root.right = new Node(10);
+        root.left.left = new Node(3);
+        root.left.right = new Node(6);
+        root.left.left.left = new Node(1);
+        root.left.left.right = new Node(4);
+        root.right.right = new Node(11);
+        root.right.right.right = new Node(14);
+
+        int low = 10;
+        int high = 14;
+        System.out.println(sumInRange(root, low, high));
+
+        // System.out.println(sizeOfLargestBST(root));
 
     }
     
