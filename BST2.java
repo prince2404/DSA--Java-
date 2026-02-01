@@ -1,0 +1,77 @@
+import java.util.*;
+
+import org.w3c.dom.Node;
+
+public class BST2 {
+    static class Node{
+        int data;
+        Node left;
+        Node right;
+
+        public Node(int data){
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    static class Info{
+        boolean isBST;
+        int size;
+        int min;
+        int max;
+
+        public Info(boolean isBST, int size, int min, int max){
+            this.isBST = isBST;
+            this.size = size;
+            this.min = min;
+            this.max = max;
+        }
+    }
+
+    static int ans = 0;
+
+    public static int sizeOfLargestBST(Node root){
+        largestBST(root);
+        return ans;
+    }
+
+    public static Info largestBST(Node root){
+        if(root == null){
+            return new Info(true, 0, Integer.MAX_VALUE, Integer.MIN_VALUE);
+        }
+
+        Info left = largestBST(root.left);
+        Info right = largestBST(root.right);
+
+        if(left.isBST && right.isBST && left.max < root.data && root.data < right.min){
+            int size = left.size + right.size + 1;
+            ans = Math.max(ans, size);
+
+            int min = Math.min(left.min, root.data);
+            int max = Math.max(right.max, root.data);
+
+            return new Info(true, size, min, max);
+        }
+
+        return new Info(false, Math.max(left.size, right.size), Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    
+
+    public static void main(String args[]){
+        Node root = new Node(50);
+        root.left = new Node(30);
+        root.right = new Node(60);
+        root.left.left = new Node(5);
+        root.left.right = new Node(20);
+        root.right.left = new Node(45);
+        root.right.right = new Node(70);
+        root.right.right.left = new Node(65);
+        root.right.right.right = new Node(80);
+
+        System.out.println(sizeOfLargestBST(root));
+
+    }
+    
+}
