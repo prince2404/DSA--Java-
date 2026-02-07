@@ -12,18 +12,35 @@ public class HeapPractice {
     }
 
     public static void nearbyCars(int cars[][], int k){
-        PriorityQueue<Car> pq = new PriorityQueue<>((a,b) -> a.distance - b.distance);
+        PriorityQueue<Car> pq = new PriorityQueue<>((a,b) -> b.distance - a.distance);
 
         for(int i = 0; i < cars.length; i++){
             int distance = cars[i][0]*cars[i][0] + cars[i][1]*cars[i][1];
             pq.add(new Car(distance, i));
+            if(pq.size() > k){
+                pq.poll();
+            }
         }
 
-        for(int i = 1; i <= k; i++){
+        while(!pq.isEmpty()){
             Car c = pq.poll();
             System.out.println(c.index);
         }
     }
+
+    // public static void nearbyCars(int cars[][], int k){
+    //     PriorityQueue<Car> pq = new PriorityQueue<>((a,b) -> a.distance - b.distance);
+
+    //     for(int i = 0; i < cars.length; i++){
+    //         int distance = cars[i][0]*cars[i][0] + cars[i][1]*cars[i][1];
+    //         pq.add(new Car(distance, i));
+    //     }
+
+    //     for(int i = 1; i <= k; i++){
+    //         Car c = pq.poll();
+    //         System.out.println(c.index);
+    //     }
+    // }
 
     public static void main(String args[]){
         int cars[][] = {{3,3}, {5,-1}, {-2,4}};
