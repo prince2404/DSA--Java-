@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class ArrayListQuestions{
     public static ArrayList<Integer> lonelyNumbers(ArrayList<Integer> nums){
         ArrayList<Integer> result = new ArrayList<>();

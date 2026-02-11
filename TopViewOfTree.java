@@ -1,6 +1,5 @@
 import java.util.*;
 import java.util.LinkedList;
-
 public class TopViewOfTree {
     static class Node{
         int data;

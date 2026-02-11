@@ -1,5 +1,4 @@
 import java.util.*;
-
 import org.w3c.dom.Node;
 public class ImplementationhashMap {
     static class HashMap<K,V> {

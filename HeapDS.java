@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class HeapDS {
     static class Heap{
         ArrayList<Integer> list = new ArrayList<>();

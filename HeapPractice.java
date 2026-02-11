@@ -1,5 +1,4 @@
 import java.util.PriorityQueue;
-
 public class HeapPractice {
     static class Car{
         int distance;
