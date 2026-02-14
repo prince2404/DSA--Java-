@@ -13,9 +13,19 @@ public class HashMapQue {
             }
         }
     }
+
+    public static int countDistinctElements(int nums[]){
+        HashSet<Integer> set = new HashSet<>();
+        for(int num : nums){
+            set.add(num);
+        }
+        return set.size();
+    }
     public static void main(String args[]){
-        int nums[] = {1,3,2,5,1,3,1,5,1};
-        majorityElements(nums);
+        // int nums[] = {1,3,2,5,1,3,1,5,1};
+        // majorityElements(nums);
+        int nums[] = {4,3,2,5,6,7,3,4,2,1};
+        System.out.println(countDistinctElements(nums));
     }
     
 }
