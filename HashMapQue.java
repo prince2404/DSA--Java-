@@ -49,16 +49,43 @@ public class HashMapQue {
         return result.size();
     }
 
+    public static void printTickets(HashMap<String, String> map){
+        HashSet<String> set = new HashSet<>();
+        for(String to : map.values()){
+            set.add(to);
+        }
+        String start = null;
+        for(String from : map.keySet()){
+            if(!set.contains(from)){
+                start = from;
+                break;
+            }
+        }
+
+        while(start != null){
+            System.out.print(start + " -> ");
+            start = map.get(start);
+        }
+    }
+
     public static void main(String args[]){
         // int nums[] = {1,3,2,5,1,3,1,5,1};
         // majorityElements(nums);
         // int nums[] = {4,3,2,5,6,7,3,4,2,1};
         // System.out.println(countDistinctElements(nums));
 
-        int arr1[] = {7,3,9};
-        int arr2[] = {6,3,9,2,9,4};
-        System.out.println(union(arr1,arr2));
-        System.out.println(intersection(arr1,arr2));
+        // int arr1[] = {7,3,9};
+        // int arr2[] = {6,3,9,2,9,4};
+        // System.out.println(union(arr1,arr2));
+        // System.out.println(intersection(arr1,arr2));
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("Chennai", "Bangalore");
+        map.put("Bombay", "Delhi");
+        map.put("Goa", "Chennai");
+        map.put("Delhi", "Goa");
+
+        printTickets(map);
     }
     
 }
